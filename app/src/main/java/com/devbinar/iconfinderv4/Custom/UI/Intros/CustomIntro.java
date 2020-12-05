@@ -66,7 +66,7 @@ public class CustomIntro extends AppIntro {
             @Override
             public void onPressBtn2() {
                 startActivity(new Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_HOME).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
-                finish();
+                finishAffinity();
                 System.exit(0);
             }
         });
