@@ -6,4 +6,4 @@ In this point are parameters used in this project:
 
 * Api: Iconfinder
 
-* Url api: https://developer.iconfinder.com/
+* Api url: https://developer.iconfinder.com/
