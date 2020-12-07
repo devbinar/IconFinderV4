@@ -14,6 +14,7 @@ import com.devbinar.iconfinderv4.Activitys.Intros.CustomIntro;
 import com.devbinar.iconfinderv4.Custom.Classes.Cache;
 import com.devbinar.iconfinderv4.Custom.Classes.CustomLog;
 import com.devbinar.iconfinderv4.Custom.UI.Modals.ModalGeneral;
+import com.devbinar.iconfinderv4.Fragments.CategoriesFragment;
 import com.devbinar.iconfinderv4.Models.BackPressedObject;
 import com.devbinar.iconfinderv4.R;
 
@@ -34,8 +35,7 @@ public class CoreActivity extends AppCompatActivity {
             startActivity(intent);
         }
 
-
-        //ProgressBarGeneral.ShowProgressBarGeneral(this, "Buscando");
+        getSupportFragmentManager().beginTransaction().replace(R.id.ac_cl_view, new CategoriesFragment()).commit();
     }
 
 
@@ -45,27 +45,27 @@ public class CoreActivity extends AppCompatActivity {
 
 
     public interface onCore{
-        void helpTouch();
+        void actionTouch();
     }
 
-    public static void modify_action_bar(Activity activity, String text, final onCore onCore, boolean mostrar_menu, boolean mostrar_help, int action_icon){
+    public static void modify_action_bar(Activity activity, String text, final onCore onCore, boolean show_menu, boolean show_action, int action_icon){
         ImageView menu = activity.findViewById(R.id.ag_iv_menu);
         TextView text_action_bar = activity.findViewById(R.id.ag_tv_section);
         ImageView action_action_bar = activity.findViewById(R.id.ag_iv_action);
-        if (mostrar_menu){
+        if (show_menu){
             menu.setVisibility(View.VISIBLE);
         }else{
             menu.setVisibility(View.GONE);
         }
         text_action_bar.setText(text);
-        if (mostrar_help){
+        if (show_action){
             action_action_bar.setVisibility(View.VISIBLE);
         }
         action_action_bar.setImageResource(action_icon);
         action_action_bar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onCore.helpTouch();
+                onCore.actionTouch();
             }
         });
     }
