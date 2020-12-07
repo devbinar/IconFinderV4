@@ -45,27 +45,38 @@ public class CoreActivity extends AppCompatActivity {
 
 
     public interface onCore{
-        void actionTouch();
+        void action1Touch();
+        void action2Touch();
     }
 
-    public static void modify_action_bar(Activity activity, String text, final onCore onCore, boolean show_menu, boolean show_action, int action_icon){
-        ImageView menu = activity.findViewById(R.id.ag_iv_menu);
+    public static void modify_action_bar(Activity activity, String text, final onCore onCore, boolean show_action_1, int action_1_icon, boolean show_action_2, int action_2_icon){
+        ImageView iv_action_1 = activity.findViewById(R.id.ag_iv_action_1);
         TextView text_action_bar = activity.findViewById(R.id.ag_tv_section);
-        ImageView action_action_bar = activity.findViewById(R.id.ag_iv_action);
-        if (show_menu){
-            menu.setVisibility(View.VISIBLE);
+        ImageView iv_action_2 = activity.findViewById(R.id.ag_iv_action_2);
+
+        if (show_action_1){
+            iv_action_1.setVisibility(View.VISIBLE);
         }else{
-            menu.setVisibility(View.GONE);
+            iv_action_1.setVisibility(View.GONE);
         }
-        text_action_bar.setText(text);
-        if (show_action){
-            action_action_bar.setVisibility(View.VISIBLE);
-        }
-        action_action_bar.setImageResource(action_icon);
-        action_action_bar.setOnClickListener(new View.OnClickListener() {
+        iv_action_1.setImageResource(action_1_icon);
+        iv_action_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onCore.actionTouch();
+                onCore.action1Touch();
+            }
+        });
+        text_action_bar.setText(text);
+        if (show_action_2){
+            iv_action_2.setVisibility(View.VISIBLE);
+        }else{
+            iv_action_2.setVisibility(View.GONE);
+        }
+        iv_action_2.setImageResource(action_2_icon);
+        iv_action_2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onCore.action2Touch();
             }
         });
     }

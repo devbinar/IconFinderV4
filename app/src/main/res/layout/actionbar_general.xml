@@ -6,10 +6,12 @@
     android:background="@color/black_1">
 
     <ImageView
-        android:id="@+id/ag_iv_menu"
+        android:id="@+id/ag_iv_action_1"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,7 +22,7 @@
         android:id="@+id/ag_tv_section"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="15dp"
         android:text="Seccion"
@@ -28,20 +30,20 @@
         android:textColor="@android:color/white"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/ag_iv_menu"
+        app:layout_constraintStart_toEndOf="@+id/ag_iv_action_1"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/ag_iv_action"
+        android:id="@+id/ag_iv_action_2"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_height="40dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="5dp"
         android:layout_marginBottom="10dp"
+        android:contentDescription="TODO"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/dw_icon"
-        android:contentDescription="TODO" />
+        app:srcCompat="@drawable/dw_icon" />
 </androidx.constraintlayout.widget.ConstraintLayout>
