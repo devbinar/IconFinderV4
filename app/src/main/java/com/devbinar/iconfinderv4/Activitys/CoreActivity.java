@@ -1,8 +1,5 @@
 package com.devbinar.iconfinderv4.Activitys;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +7,11 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+
+import com.devbinar.iconfinderv4.Activitys.Intros.CustomIntro;
+import com.devbinar.iconfinderv4.Custom.Classes.Cache;
 import com.devbinar.iconfinderv4.Custom.Classes.CustomLog;
 import com.devbinar.iconfinderv4.Custom.UI.Modals.ModalGeneral;
 import com.devbinar.iconfinderv4.Models.BackPressedObject;
@@ -26,10 +28,15 @@ public class CoreActivity extends AppCompatActivity {
         setTheme(R.style.AppTheme);
         setContentView(R.layout.activity_core);
 
+        Cache cache = new Cache(getSharedPreferences("data", MODE_PRIVATE));
+        if (!cache.read().getBoolean("intro", false)){
+            Intent intent = new Intent(this, CustomIntro.class);
+            startActivity(intent);
+        }
+
+
         //ProgressBarGeneral.ShowProgressBarGeneral(this, "Buscando");
     }
-
-
 
 
 
@@ -76,7 +83,7 @@ public class CoreActivity extends AppCompatActivity {
         void pressed();
     }
 
-    private static List<BackPressedObject> listBackPressedObject = new ArrayList<>();
+    private static final List<BackPressedObject> listBackPressedObject = new ArrayList<>();
 
     public static List<BackPressedObject> getListBackPressedObject() {
         return listBackPressedObject;

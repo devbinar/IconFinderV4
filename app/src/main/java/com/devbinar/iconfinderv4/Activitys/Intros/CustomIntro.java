@@ -1,14 +1,16 @@
-package com.devbinar.iconfinderv4.Custom.UI.Intros;
+package com.devbinar.iconfinderv4.Activitys.Intros;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.fragment.app.Fragment;
+
 import com.devbinar.iconfinderv4.Custom.Classes.Cache;
 import com.devbinar.iconfinderv4.Custom.UI.Modals.ModalGeneral;
 import com.devbinar.iconfinderv4.R;
-import com.github.paolorotolo.appintro.AppIntro;
-import com.github.paolorotolo.appintro.AppIntroFragment;
+import com.github.appintro.AppIntro;
+import com.github.appintro.AppIntroFragment;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,17 +24,18 @@ public class CustomIntro extends AppIntro {
                 "Welcome",
                 "This is an aplication of test",
                 R.drawable.dw_icon,
-                getResources().getColor(R.color.black_2)));
-        showSkipButton(false);
+                getResources().getColor(R.color.gray_1),
+                getResources().getColor(R.color.black_1),
+                getResources().getColor(R.color.black_2)
+        ));
         setDoneText("Done");
+
+        setTitleColor(getResources().getColor(R.color.black_1));
+        setColorDoneText(getResources().getColor(R.color.black_1));
     }
 
     @Override
-    public void onNextPressed() {
-    }
-
-    @Override
-    public void onDonePressed() {
+    protected void onDonePressed(Fragment currentFragment) {
         Cache cache = new Cache(getSharedPreferences("data", MODE_PRIVATE));
         SharedPreferences.Editor sharedEditor = cache.read().edit();
         Map<String, Boolean> introMap = new HashMap<>();
@@ -41,10 +44,7 @@ public class CustomIntro extends AppIntro {
         sharedEditor.apply();
         setResult(RESULT_OK);
         finish();
-    }
-
-    @Override
-    public void onSlideChanged() {
+        super.onDonePressed(currentFragment);
     }
 
     @Override
