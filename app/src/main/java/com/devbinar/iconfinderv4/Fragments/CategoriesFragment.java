@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.android.volley.VolleyError;
 import com.devbinar.iconfinderv4.Activitys.CoreActivity;
@@ -19,6 +20,8 @@ import com.devbinar.iconfinderv4.Custom.Classes.CustomEasyReqFilter;
 import com.devbinar.iconfinderv4.Custom.UI.ListViews.Categories.CategoriesAdapter;
 import com.devbinar.iconfinderv4.Custom.UI.ListViews.Categories.Category;
 import com.devbinar.iconfinderv4.Custom.UI.ProgressBar.ProgressBarGeneral;
+import com.devbinar.iconfinderv4.Fragments.Icons.IconsCategoryFragment;
+import com.devbinar.iconfinderv4.Models.BackPressedObject;
 import com.devbinar.iconfinderv4.R;
 import com.devbinar.peticiones.EasyReq;
 
@@ -32,6 +35,7 @@ import java.util.Map;
 public class CategoriesFragment extends Fragment {
 
     ArrayList<Category> categoryArrayList = new ArrayList<>();
+    ArrayList<Category> categoryArrayListNew = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -42,9 +46,22 @@ public class CategoriesFragment extends Fragment {
 
         CoreActivity.modify_action_bar(getActivity(), "Select category", new CoreActivity.onCore() {
             @Override
-            public void actionTouch() {
+            public void action1Touch() {
+
             }
-        }, false, false, R.drawable.dw_icon);
+
+            @Override
+            public void action2Touch() {
+            }
+        }, false, R.drawable.dw_icon, false, R.drawable.dw_icon);
+        CoreActivity.addListOnBackPressed(new BackPressedObject(this, new CoreActivity.OnBackPressed() {
+            @Override
+            public void press(FragmentManager fragmentManager) {
+            }
+            @Override
+            public void pressed() {
+            }
+        }));
 
         et_search_category.addTextChangedListener(new TextWatcher() {
             @Override
@@ -55,7 +72,7 @@ public class CategoriesFragment extends Fragment {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 int textlength = et_search_category.getText().length();
 
-                ArrayList<Category> categoryArrayListNew =  new ArrayList<>();
+                categoryArrayListNew = new ArrayList<>();
 
                 for (int i = 0; i < categoryArrayList.size(); i++) {
                     if (textlength <= categoryArrayList.get(i).getName().length()) {
@@ -76,7 +93,7 @@ public class CategoriesFragment extends Fragment {
         lv_categories.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.ac_cl_view, new IconsCategoryFragment(categoryArrayListNew.get(position).getName(), categoryArrayListNew.get(position).getIdentifier())).commit();
             }
         });
 
@@ -89,10 +106,12 @@ public class CategoriesFragment extends Fragment {
                     JSONArray categories = new JSONObject(response).getJSONArray("categories");
                     categoryArrayList.clear();
                     for (int i = 0; i < categories.length(); i++){
-                        categoryArrayList.add(new Category(categories.getJSONObject(i).getString("name")));
+                        categoryArrayList.add(new Category(categories.getJSONObject(i).getString("name"), categories.getJSONObject(i).getString("identifier")));
                     }
+                    categoryArrayListNew = categoryArrayList;
                     CategoriesAdapter categoriesAdapter = new CategoriesAdapter(getActivity(), categoryArrayList);
                     lv_categories.setAdapter(categoriesAdapter);
+                    et_search_category.setText(et_search_category.getText().toString());
                 }catch (Exception exception){
                     //
                 }
