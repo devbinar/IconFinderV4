@@ -17,6 +17,7 @@ public class CustomEasyReqFilter extends EasyReqFilter {
     @Override
     public void Filter_response(Context context, String response, int code_request, EasyReq.Event event) {
         CustomLog.i("Filter_response",  CustomLog.getLine_debug()+response);
+        event.Response(response, code_request);
     }
 
     String filter_error_string;
