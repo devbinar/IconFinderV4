@@ -40,7 +40,7 @@ public class IconsAdapter extends RecyclerView.Adapter<IconsAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull final IconsAdapter.ViewHolder holder, final int position) {
-        EasyReq.READ_IMAGE(iconArrayList.get(position).getUrl_image(), new EasyReq.EventReadImage() {
+        EasyReq.READ_IMAGE(iconArrayList.get(position).getUrl_image_1(), new EasyReq.EventReadImage() {
             @Override
             public void Start() {
             }

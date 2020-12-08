@@ -8,15 +8,21 @@ public class Icon {
     boolean is_premium;
     String currency;
     String price;
-    String url_image;
+    String url_image_1;
+    String url_image_2;
+    String url_image_3;
+    String url_image_4;
     Bitmap bm_image;
 
-    public Icon(int icon_id, boolean is_premium, String currency, String price, String url_image) {
+    public Icon(int icon_id, boolean is_premium, String currency, String price, String url_image_1, String url_image_2, String url_image_3, String url_image_4) {
         this.icon_id = icon_id;
         this.is_premium = is_premium;
         this.currency = currency;
         this.price = price;
-        this.url_image = url_image;
+        this.url_image_1 = url_image_1;
+        this.url_image_2 = url_image_2;
+        this.url_image_3 = url_image_3;
+        this.url_image_4 = url_image_4;
     }
 
     public int getIcon_id() {
@@ -35,8 +41,8 @@ public class Icon {
         return price;
     }
 
-    public String getUrl_image() {
-        return url_image;
+    public String getUrl_image_1() {
+        return url_image_1;
     }
 
     public Bitmap getBm_image() {

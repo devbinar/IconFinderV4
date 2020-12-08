@@ -102,10 +102,12 @@ public class IconsCategoryFragment extends Fragment {
                             currency = jo_prices.getString("currency");
                             price = jo_prices.getString("price");
                         }
-                        String url_image = jo_icon.getJSONArray("raster_sizes").
-                                getJSONObject(jo_icon.getJSONArray("raster_sizes").length()-2).
-                                getJSONArray("formats").getJSONObject(0).getString("preview_url");
-                        iconArrayList.add(new Icon(jo_icon.getInt("icon_id"), is_premium, currency, price, url_image));
+                        JSONArray ja_all_images = jo_icon.getJSONArray("raster_sizes");
+                        String url_image_1 = ja_all_images.getJSONObject(jo_icon.getJSONArray("raster_sizes").length()-2).getJSONArray("formats").getJSONObject(0).getString("preview_url");
+                        String url_image_2 = ja_all_images.getJSONObject(jo_icon.getJSONArray("raster_sizes").length()-3).getJSONArray("formats").getJSONObject(0).getString("preview_url");
+                        String url_image_3 = ja_all_images.getJSONObject(jo_icon.getJSONArray("raster_sizes").length()-4).getJSONArray("formats").getJSONObject(0).getString("preview_url");
+                        String url_image_4 = ja_all_images.getJSONObject(jo_icon.getJSONArray("raster_sizes").length()-5).getJSONArray("formats").getJSONObject(0).getString("preview_url");
+                        iconArrayList.add(new Icon(jo_icon.getInt("icon_id"), is_premium, currency, price, url_image_1, url_image_2, url_image_3, url_image_4));
                     }
                     IconsAdapter iconsAdapter = new IconsAdapter(getActivity(), iconArrayList);
                     iconsAdapter.setOnClickListener(new IconsAdapter.OnClickListener() {
@@ -114,11 +116,11 @@ public class IconsCategoryFragment extends Fragment {
                             Intent intent = new Intent(getActivity(), DetailsIconActivity.class);
                             Bundle bundle = new Bundle();
                             bundle.putInt("icon_id", icon.getIcon_id());
-                            bundle.putParcelable("bm_image", icon.getBm_image());
+                            intent.putExtra("bm_image", icon.getBm_image());
                             startActivity(intent, bundle);
                         }
                     });
-                    rv_icons.setLayoutManager(new GridLayoutManager(getContext(), 2));
+                    rv_icons.setLayoutManager(new GridLayoutManager(getContext(), 3));
                     rv_icons.setAdapter(iconsAdapter);
 
                 }catch (Exception exception){
