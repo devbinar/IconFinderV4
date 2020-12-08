@@ -27,8 +27,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ListView
-        android:id="@+id/fc_lv_categories"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/fc_rv_categories"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginStart="5dp"

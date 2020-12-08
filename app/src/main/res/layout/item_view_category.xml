@@ -6,13 +6,13 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/ilc_tv_name"
+        android:id="@+id/ivc_tv_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="15dp"
-        android:text="Seccion"
+        android:text="Category"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:textColor="@color/black_1"
         android:textSize="18sp"

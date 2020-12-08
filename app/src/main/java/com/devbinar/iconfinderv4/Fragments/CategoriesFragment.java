@@ -6,12 +6,12 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.EditText;
-import android.widget.ListView;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.VolleyError;
 import com.devbinar.iconfinderv4.Activitys.CoreActivity;
@@ -42,7 +42,7 @@ public class CategoriesFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_categories, container, false);
 
         final EditText et_search_category = view.findViewById(R.id.fc_et_search_category);
-        final ListView lv_categories = view.findViewById(R.id.fc_lv_categories);
+        final RecyclerView rv_categories = view.findViewById(R.id.fc_rv_categories);
 
         CoreActivity.modify_action_bar(getActivity(), "Select category", new CoreActivity.onCore() {
             @Override
@@ -82,18 +82,19 @@ public class CategoriesFragment extends Fragment {
                     }
                 }
                 CategoriesAdapter categoriesAdapter = new CategoriesAdapter(getActivity(), categoryArrayListNew);
-                lv_categories.setAdapter(categoriesAdapter);
+                categoriesAdapter.setOnClickListener(new CategoriesAdapter.OnClickListener() {
+                    @Override
+                    public void touch(Category category) {
+                        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.ac_cl_view, new IconsCategoryFragment(category.getName(), category.getIdentifier())).commit();
+                    }
+                });
+                rv_categories.setLayoutManager(new LinearLayoutManager(getContext()));
+                rv_categories.setAdapter(categoriesAdapter);
             }
 
             @Override
             public void afterTextChanged(Editable s) {
 
-            }
-        });
-        lv_categories.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.ac_cl_view, new IconsCategoryFragment(categoryArrayListNew.get(position).getName(), categoryArrayListNew.get(position).getIdentifier())).commit();
             }
         });
 
@@ -110,7 +111,14 @@ public class CategoriesFragment extends Fragment {
                     }
                     categoryArrayListNew = categoryArrayList;
                     CategoriesAdapter categoriesAdapter = new CategoriesAdapter(getActivity(), categoryArrayList);
-                    lv_categories.setAdapter(categoriesAdapter);
+                    categoriesAdapter.setOnClickListener(new CategoriesAdapter.OnClickListener() {
+                        @Override
+                        public void touch(Category category) {
+                            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.ac_cl_view, new IconsCategoryFragment(category.getName(), category.getIdentifier())).commit();
+                        }
+                    });
+                    rv_categories.setLayoutManager(new LinearLayoutManager(getContext()));
+                    rv_categories.setAdapter(categoriesAdapter);
                     et_search_category.setText(et_search_category.getText().toString());
                 }catch (Exception exception){
                     //
@@ -125,7 +133,7 @@ public class CategoriesFragment extends Fragment {
         }, new EasyReq.State() {
             @Override
             public void Start() {
-                ProgressBarGeneral.ShowProgressBarGeneral(getContext(), "Buscando");
+                ProgressBarGeneral.ShowProgressBarGeneral(getContext(), "Loading");
             }
 
             @Override
