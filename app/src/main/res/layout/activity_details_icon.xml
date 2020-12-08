@@ -6,4 +6,94 @@
     android:layout_height="match_parent"
     tools:context=".Activitys.Icons.DetailsIconActivity">
 
+    <ImageView
+        android:id="@+id/adi_iv_3"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:background="@drawable/background_round_modal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/adi_iv_1"
+        app:layout_constraintTop_toBottomOf="@+id/adi_iv_2"
+        app:srcCompat="@drawable/background_round_modal" />
+
+    <ImageView
+        android:id="@+id/adi_iv_4"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:background="@drawable/background_round_modal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/adi_iv_1"
+        app:layout_constraintTop_toBottomOf="@+id/adi_iv_3"
+        app:srcCompat="@drawable/background_round_modal" />
+
+    <ImageView
+        android:id="@+id/adi_iv_2"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:background="@drawable/background_round_modal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/adi_iv_1"
+        app:layout_constraintTop_toBottomOf="@+id/include2"
+        app:srcCompat="@drawable/background_round_modal" />
+
+    <ImageView
+        android:id="@+id/adi_iv_1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:background="@drawable/background_round_modal"
+        app:layout_constraintBottom_toBottomOf="@+id/adi_iv_4"
+        app:layout_constraintEnd_toStartOf="@+id/adi_iv_2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include2"
+        app:srcCompat="@drawable/background_round_modal" />
+
+    <ProgressBar
+        android:id="@+id/adi_pb_2"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/adi_iv_2"
+        app:layout_constraintEnd_toEndOf="@+id/adi_iv_2"
+        app:layout_constraintStart_toStartOf="@+id/adi_iv_2"
+        app:layout_constraintTop_toTopOf="@+id/adi_iv_2" />
+
+    <ProgressBar
+        android:id="@+id/adi_pb_3"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/adi_iv_3"
+        app:layout_constraintEnd_toEndOf="@+id/adi_iv_3"
+        app:layout_constraintStart_toStartOf="@+id/adi_iv_3"
+        app:layout_constraintTop_toTopOf="@+id/adi_iv_3" />
+
+    <ProgressBar
+        android:id="@+id/adi_pb_4"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/adi_iv_4"
+        app:layout_constraintEnd_toEndOf="@+id/adi_iv_4"
+        app:layout_constraintStart_toStartOf="@+id/adi_iv_4"
+        app:layout_constraintTop_toBottomOf="@+id/adi_iv_3" />
+
+    <include
+        android:id="@+id/include2"
+        layout="@layout/actionbar_general"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

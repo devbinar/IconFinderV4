@@ -114,10 +114,12 @@ public class IconsCategoryFragment extends Fragment {
                         @Override
                         public void touch(Icon icon) {
                             Intent intent = new Intent(getActivity(), DetailsIconActivity.class);
-                            Bundle bundle = new Bundle();
-                            bundle.putInt("icon_id", icon.getIcon_id());
                             intent.putExtra("bm_image", icon.getBm_image());
-                            startActivity(intent, bundle);
+                            intent.putExtra("icon_id", icon.getIcon_id());
+                            intent.putExtra("url_image_2", icon.getUrl_image_2());
+                            intent.putExtra("url_image_3", icon.getUrl_image_3());
+                            intent.putExtra("url_image_4", icon.getUrl_image_4());
+                            startActivity(intent);
                         }
                     });
                     rv_icons.setLayoutManager(new GridLayoutManager(getContext(), 3));

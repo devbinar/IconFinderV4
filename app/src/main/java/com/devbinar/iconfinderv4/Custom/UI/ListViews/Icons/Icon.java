@@ -52,4 +52,16 @@ public class Icon {
     public void setBm_image(Bitmap bm_image) {
         this.bm_image = bm_image;
     }
+
+    public String getUrl_image_2() {
+        return url_image_2;
+    }
+
+    public String getUrl_image_3() {
+        return url_image_3;
+    }
+
+    public String getUrl_image_4() {
+        return url_image_4;
+    }
 }
