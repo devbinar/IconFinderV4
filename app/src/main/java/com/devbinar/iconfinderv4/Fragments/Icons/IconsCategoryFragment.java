@@ -66,27 +66,9 @@ public class IconsCategoryFragment extends Fragment {
             }
         }));
 
-        /*
-        listView.setOnScrollListener(new AbsListView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(AbsListView view, int scrollState) {
-                if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE &&
-                        (listView.getLastVisiblePosition() - listView.getHeaderViewsCount() - listView.getFooterViewsCount()) >= (adapter.getCount() - 1)) {
-
-                }
-            }
-
-            @Override
-            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-
-            }
-        });
-
-
-         */
         Map<String, String> headers_map = new HashMap<>();
         headers_map.put("Authorization", "Bearer X0vjEUN6KRlxbp2DoUkyHeM0VOmxY91rA6BbU5j3Xu6wDodwS0McmilLPBWDUcJ1");
-        EasyReq.GET(getContext(), Server.url + "icons/search?count=100&&category="+category_identifier, new CustomEasyReqFilter(), 1, headers_map, new EasyReq.Event() {
+        EasyReq.GET(getContext(), Server.url + "icons/search?count=100&category="+category_identifier, new CustomEasyReqFilter(), 1, headers_map, new EasyReq.Event() {
             @Override
             public void Response(String response, int code_request) {
                 try {

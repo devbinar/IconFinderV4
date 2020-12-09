@@ -34,7 +34,7 @@ public class CustomEasyReqFilter extends EasyReqFilter {
             Network.internet_access(context, new Network.OnInternet() {
                 @Override
                 public void IsOk() {
-                    //report_error(context,""+code_request,"Error json", filter_error_string +"----- "+ volleyError.networkResponse.statusCode);
+                    show_modal_without_internet(context);
                 }
 
                 @Override
